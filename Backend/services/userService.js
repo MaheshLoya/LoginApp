@@ -3,7 +3,7 @@ const db = require('../config/db');
 
 exports.getAllUsers = () => {
   return new Promise((resolve, reject) => {
-    const sql = 'SELECT * FROM users';
+    const sql = 'SELECT * FROM usertable';
     db.query(sql, (err, results) => {
       if (err) return reject(err);
       resolve(results);
@@ -13,7 +13,7 @@ exports.getAllUsers = () => {
 
 exports.getUserById = (id) => {
   return new Promise((resolve, reject) => {
-    const sql = 'SELECT * FROM users WHERE id = ?';
+    const sql = 'SELECT * FROM usertable WHERE id = ?';
     db.query(sql, [id], (err, results) => {
       if (err) return reject(err);
       resolve(results[0]);
@@ -23,7 +23,7 @@ exports.getUserById = (id) => {
 
 exports.createUser = (name, email) => {
   return new Promise((resolve, reject) => {
-    const sql = 'INSERT INTO users (name, email) VALUES (?, ?)';
+    const sql = 'INSERT INTO usertable (name, email) VALUES (?, ?)';
     db.query(sql, [name, email], (err, result) => {
       if (err) return reject(err);
       resolve({ id: result.insertId, name, email });
@@ -33,7 +33,7 @@ exports.createUser = (name, email) => {
 
 exports.updateUser = (id, name, email) => {
   return new Promise((resolve, reject) => {
-    const sql = 'UPDATE users SET name = ?, email = ? WHERE id = ?';
+    const sql = 'UPDATE usertable SET name = ?, email = ? WHERE id = ?';
     db.query(sql, [name, email, id], (err, result) => {
       if (err) return reject(err);
       resolve(result.affectedRows ? { id, name, email } : null);
@@ -43,7 +43,7 @@ exports.updateUser = (id, name, email) => {
 
 exports.deleteUser = (id) => {
   return new Promise((resolve, reject) => {
-    const sql = 'DELETE FROM users WHERE id = ?';
+    const sql = 'DELETE FROM usertable WHERE id = ?';
     db.query(sql, [id], (err, result) => {
       if (err) return reject(err);
       resolve(result.affectedRows ? true : false);
