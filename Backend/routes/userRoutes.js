@@ -11,3 +11,5 @@ router.delete('/:id', userController.deleteUser);
 router.post('/login', loginController.login);
 
 module.exports = router;
+
+//all are same.. hence we need to check with HTTP method is being used. If you see the network tab it shows PUT

@@ -33,7 +33,7 @@ exports.createUser = (name, email) => {
 
 exports.updateUser = (id, name, email) => {
   return new Promise((resolve, reject) => {
-    const sql = 'UPDATE usertable SET name = ?, email = ? WHERE id = ?';
+    const sql = 'UPDATE usertable SET name = ?, password = ? WHERE userId = ?';
     db.query(sql, [name, email, id], (err, result) => {
       if (err) return reject(err);
       resolve(result.affectedRows ? { id, name, email } : null);
@@ -43,7 +43,7 @@ exports.updateUser = (id, name, email) => {
 
 exports.deleteUser = (id) => {
   return new Promise((resolve, reject) => {
-    const sql = 'DELETE FROM usertable WHERE id = ?';
+    const sql = 'DELETE FROM usertable WHERE userId = ?';
     db.query(sql, [id], (err, result) => {
       if (err) return reject(err);
       resolve(result.affectedRows ? true : false);

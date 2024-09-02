@@ -5,7 +5,7 @@ const bcrypt = require("bcrypt");
 
 exports.login = (username, password) => {
   return new Promise((resolve, reject) => {
-    const sqlSearch = "Select * from usertable where user = ?";
+    const sqlSearch = "Select * from usertable where name = ?";
     const search_query = mysql.format(sqlSearch, [username]);
 
     db.query(search_query, (err, results) => {

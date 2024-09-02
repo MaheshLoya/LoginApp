@@ -34,8 +34,9 @@ exports.createUser = async (req, res) => {
 
 exports.updateUser = async (req, res) => {
   try {
-    const { name, email } = req.body;
-    const updatedUser = await userService.updateUser(req.params.id, name, email);
+    //frontend sends user, but at backend we have name.
+    const { user, password } = req.body;
+    const updatedUser = await userService.updateUser(req.params.id, user, password);
     if (updatedUser) {
       res.json(updatedUser);
     } else {

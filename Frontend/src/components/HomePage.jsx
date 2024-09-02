@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const HomePage = () => {
   const [users, setUsers] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
-  const [currentUser, setCurrentUser] = useState({ userId: '', userName: '', password: '' });
+  const [currentUser, setCurrentUser] = useState({ userId: '', name: '', password: '' });
 
   useEffect(() => {
     fetchUsers();
@@ -63,7 +63,7 @@ const HomePage = () => {
       if (response.ok) {
         setUsers(users.map((user) => (user.userId === currentUser.userId ? currentUser : user)));
         setIsEditing(false);
-        setCurrentUser({ userId: '', userName: '', password: '' });
+        setCurrentUser({ userId: '', name: '', password: '' });
       } else {
         alert('Failed to update user');
       }
@@ -97,8 +97,8 @@ const HomePage = () => {
             <label>Name</label>
             <input
               type="text"
-              name="userName"
-              value={currentUser.userName}
+              name="name"
+              value={currentUser.name}
               onChange={handleEditChange}
               className="form-control"
             />
@@ -139,7 +139,7 @@ const HomePage = () => {
               {users.map((user) => (
                 <tr key={user.userId}>
                   <td>{user.userId}</td>
-                  <td>{user.userName}</td>
+                  <td>{user.name}</td>
                   <td>{user.password}</td>
                   <td>
                     <button
